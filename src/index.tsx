@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createContext} from "react";
+import * as stores from './stores';
+
+// Подключение сторов
+export const StoreContext = createContext<typeof stores>({} as typeof stores);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <StoreContext.Provider value={{...stores}}>
+          <App />
+      </StoreContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
